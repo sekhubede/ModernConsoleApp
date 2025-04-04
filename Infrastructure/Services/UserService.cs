@@ -1,8 +1,7 @@
 ﻿using Core.Interfaces;
 using Core.Models;
-using Infrastructure.Interfaces;
 
-namespace Core.Services;
+namespace Infrastructure.Services;
 
 public class UserService : IUserService
 {

@@ -1,4 +1,4 @@
-﻿using Infrastructure.Interfaces;
+﻿using Core.Interfaces;
 using Serilog;
 
 namespace Infrastructure.Services;

@@ -3,8 +3,6 @@ using ConsoleUI.Interfaces;
 using ConsoleUI.Services;
 using ConsoleUI.Views;
 using Core.Interfaces;
-using Core.Services;
-using Infrastructure.Interfaces;
 using Infrastructure.Services;
 
 var services = ConfigureServices();
@@ -18,17 +16,17 @@ static IServiceCollection ConfigureServices()
 {
     var services = new ServiceCollection();
 
-    // Register Core Services
+    // Register Core Contracts
     services.AddSingleton<IUserService, UserService>();
+    services.AddSingleton<ILoggerService, LoggerService>();
 
     // Register UI Services
     services.AddSingleton<INavigationService, NavigationService>();
-    services.AddSingleton<MainView>();
-    services.AddSingleton<UserManagementView>();
     services.AddSingleton<ICommandHandler, CommandHandler>();
 
-    // Register Infrastructure Services
-    services.AddSingleton<ILoggerService, LoggerService>();
+    // Register Views
+    services.AddSingleton<MainView>();
+    services.AddSingleton<UserManagementView>();
 
     return services;
 }

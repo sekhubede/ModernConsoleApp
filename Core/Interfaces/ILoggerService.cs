@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Interfaces;
+﻿namespace Core.Interfaces;
 
 public interface ILoggerService
 {
