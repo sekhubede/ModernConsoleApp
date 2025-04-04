@@ -13,15 +13,20 @@ public class UserService : IUserService
         _logger = logger;
     }
 
-    public void AddUser(string name)
+    public async Task AddUserAsync(string name)
     {
+        // Simulate some async work
+        await Task.Delay(100);
+
         _users.Add(new User { name = name });
         _logger.LogInformation($"User '{name}' added successfully!");
-        Console.WriteLine("User '{name}' added successfully!");
     }
 
-    public void ListUsers()
+    public async Task ListUsersAsync()
     {
+        // Simulate some async work
+        await Task.Delay(100);
+
         _logger.LogInformation("Listing users...");
         Console.WriteLine("\nUser List:");
         _users.ForEach(user => Console.WriteLine($"- {user.name}"));

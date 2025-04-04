@@ -22,7 +22,7 @@ public class UserServiceTests
         var userName = "John Doe";
 
         // Act
-        _userService.AddUser(userName);
+        _userService.AddUserAsync(userName);
 
         // Assert
         _loggerMock.Verify(logger => logger.LogInformation(It.Is<string>(s => s.Contains($"User '{userName}' added successfully"))), Times.Once);
@@ -32,11 +32,11 @@ public class UserServiceTests
     public void ListUsers_ShouldLogInformaiton()
     {
         // Arrange
-        _userService.AddUser("John Doe");
-        _userService.AddUser("Jane Smith");
+        _userService.AddUserAsync("John Doe");
+        _userService.AddUserAsync("Jane Smith");
 
         // Act
-        _userService.ListUsers();
+        _userService.ListUsersAsync();
 
         // Assert
         _loggerMock.Verify(logger => logger.LogInformation(It.Is<string>(s => s.Contains("Listing users..."))), Times.Once);

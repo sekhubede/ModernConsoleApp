@@ -2,5 +2,5 @@
 
 public interface INavigationService
 {
-    void NavigateTo<T>() where T : IView;
+    Task NavigateToAsync<T>() where T : IView;
 }

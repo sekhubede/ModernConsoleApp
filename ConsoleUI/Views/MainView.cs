@@ -14,7 +14,7 @@ public class MainView : IView
         _commandHandler = commandHandler;
     }
 
-    public void Render()
+    public async Task RenderAsync()
     {
         while (true)
         {
@@ -24,7 +24,15 @@ public class MainView : IView
             Console.WriteLine("Select an option: ");
 
             var input = Console.ReadLine();
-            _commandHandler.Execute(input);
+
+            if (input == "2")
+            {
+                Console.WriteLine("\nExiting application...");
+                Environment.Exit(0);
+            }
+
+            if (!string.IsNullOrEmpty(input))
+                await _commandHandler.ExecuteAsync(input);
         }
     }
 }

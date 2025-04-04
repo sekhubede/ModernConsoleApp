@@ -2,6 +2,6 @@
 
 public interface IUserService
 {
-    void AddUser(string name);
-    void ListUsers();
+    Task AddUserAsync(string name);
+    Task ListUsersAsync();
 }

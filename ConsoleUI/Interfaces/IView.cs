@@ -2,5 +2,5 @@
 
 public interface IView
 {
-    void Render();
+    Task RenderAsync();
 }

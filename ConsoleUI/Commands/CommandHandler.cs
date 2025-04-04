@@ -12,12 +12,12 @@ public class CommandHandler : ICommandHandler
         _navigationService = navigationService;
     }
 
-    public void Execute(string command)
+    public async Task ExecuteAsync(string command)
     {
         switch (command.ToLower())
         {
             case "1":
-                _navigationService.NavigateTo<UserManagementView>();
+                await _navigationService.NavigateToAsync<UserManagementView>();
                 break;
             case "2":
                 Console.WriteLine("Exiting application...");

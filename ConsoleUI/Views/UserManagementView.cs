@@ -15,7 +15,7 @@ public class UserManagementView : IView
         _navigationService = navigation;
     }
 
-    public void Render()
+    public async Task RenderAsync()
     {
         while (true)
         {
@@ -32,13 +32,13 @@ public class UserManagementView : IView
                 case "1":
                     Console.Write("Enter user name: ");
                     var name = Console.ReadLine();
-                    _userService.AddUser(name);
+                    await _userService.AddUserAsync(name);
                     break;
                 case "2":
-                    _userService.ListUsers();
+                    await _userService.ListUsersAsync();
                     break;
                 case "3":
-                    _navigationService.NavigateTo<MainView>();
+                    await _navigationService.NavigateToAsync<MainView>();
                     return;
                 default:
                     Console.WriteLine("Invalid option. Try again.");
