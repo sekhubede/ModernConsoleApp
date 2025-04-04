@@ -1,8 +1,9 @@
-﻿using Serilog;
+﻿using Infrastructure.Interfaces;
+using Serilog;
 
 namespace Infrastructure.Services;
 
-public class LoggerService
+public class LoggerService : ILoggerService
 {
     private readonly ILogger _logger;
 
