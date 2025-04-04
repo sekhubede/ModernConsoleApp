@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Core.Interfaces;
 
-namespace Core.Interfaces
+public interface IUserService
 {
-    public interface IUserService
-    {
-    }
+    void AddUser(string name);
+    void ListUsers();
 }
