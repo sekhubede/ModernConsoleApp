@@ -7,12 +7,9 @@ public class LoggerService : ILoggerService
 {
     private readonly ILogger _logger;
 
-    public LoggerService()
+    public LoggerService(ILogger logger)
     {
-        _logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
-            .WriteTo.Console()
-            .CreateLogger();
+       _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
     public void LogInformation(string message) => _logger.Information(message);
