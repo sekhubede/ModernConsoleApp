@@ -1,11 +1,11 @@
-﻿using DataAccess.Data;
+﻿using Core.Interfaces;
+using DataAccess.Data;
 using DataAccess.Entities;
-using Infrastructure.Events;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories;
 
-public class UserRepository
+public class UserRepository : IUserRepository
 {
     private readonly AppDbContext _context;
 
@@ -14,12 +14,24 @@ public class UserRepository
         _context = context;
     }
 
-    public async Task AddUserAsync(User user)
+    public async Task AddUserAsync(Core.Models.User user)
     {
-        _context.Users.Add(user);
+        var entityUser = new User
+        {
+            Id = user.Id,
+            Name = user.Name
+        };
+        await _context.Users.AddAsync(entityUser);
         await _context.SaveChangesAsync();
-        EventBus.PublishSuccess($"User '{user.Name}' added to database!");
     }
 
-    public async Task<List<User>> GetUsersAsync() => await _context.Users.ToListAsync();
+    public async Task<List<Core.Models.User>> GetUsersAsync()
+    { 
+        var entityUsers = await _context.Users.ToListAsync();
+        return entityUsers.Select(u => new Core.Models.User
+        {
+            Id = u.Id,
+            Name = u.Name
+        }).ToList();
+    }
 }

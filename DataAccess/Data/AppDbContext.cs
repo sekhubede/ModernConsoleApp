@@ -5,10 +5,9 @@ namespace DataAccess.Data;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<User> Users { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        options.UseSqlite("Data Source=app.db;");
     }
+
+    public DbSet<User> Users { get; set; }
 }

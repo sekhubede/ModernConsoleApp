@@ -1,5 +1,4 @@
 ﻿using Core.Interfaces;
-using Infrastructure.Events;
 using Serilog;
 
 namespace Infrastructure.Services;
@@ -7,13 +6,14 @@ namespace Infrastructure.Services;
 public class LoggerService : ILoggerService
 {
     private readonly ILogger _logger;
+    private readonly IEventBus _eventBus;
 
-    public LoggerService(ILogger logger)
+    public LoggerService(ILogger logger, IEventBus eventBus)
     {
        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-        EventBus.OnSuccess += LogInformation;
-        EventBus.OnFailure += LogError;
+        eventBus.OnSuccess += LogInformation;
+        eventBus.OnFailure += LogError;
     }
 
     public void LogInformation(string message) => _logger.Information(message);
